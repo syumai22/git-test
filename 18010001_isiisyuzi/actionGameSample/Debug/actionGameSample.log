@@ -1,0 +1,3 @@
+﻿  main.cpp
+c:\users\石井秀治\desktop\myゲーム\18010001_isiisyuzi\actiongamesample\player.h(73): warning C4244: '初期化中': 'float' から 'const int' への変換です。データが失われる可能性があります。
+  actionGameSample.vcxproj -> C:\Users\石井秀治\Desktop\myゲーム\18010001_isiisyuzi\Debug\actionGameSample.exe
