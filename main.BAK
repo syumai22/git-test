@@ -1,6 +1,6 @@
 #include"Header.h"
 
-// ?}?b?v?f?[?^
+// ƒ}ƒbƒvƒf[ƒ^
 unsigned char map[][MAP_WIDTH] =
 //0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20  21  22  23  24  25  26  27  28  29
 {
@@ -120,18 +120,18 @@ int		WINAPI		myWinMain(HINSTANCE hInstance, HINSTANCE hPreInst, LPSTR     CmdLin
 	ChangeWindowMode(TRUE);
 #endif 
 	/////////////////////////////////////////////////////////
-	// DXLIB???åŒ€ï½»é–¢?A
+	// DXLIB‰Šú‰»ŠÖ˜A
 	/////////////////////////////////////////////////////////
 	SetGraphMode(WINDOW_WIDTH, WINDOW_HEIGHT, 16);
 
-	SetMainWindowText("1?N???p?e???v???[?g07");// ?E?B?h?E?^?C?g??
-	DxLib_Init();   // DX???C?u?????????
+	SetMainWindowText("1”N¶—pƒeƒ“ƒvƒŒ[ƒg07");// ƒEƒBƒhƒEƒ^ƒCƒgƒ‹
+	DxLib_Init();   // DXƒ‰ƒCƒuƒ‰ƒŠ‰Šú‰»ˆ—
 
 	SetMouseDispFlag(true);
-	SetDrawScreen(DX_SCREEN_BACK); //?`?è¬³ãƒ»ğ— ‰è­ï¾Š?Éİ’ãƒ»
+	SetDrawScreen(DX_SCREEN_BACK); //•`‰ææ‚ğ— ‰æ–Ê‚Éİ’è
 
 	const int    enemyNum = 100;
-	//?N???X?Ö??éŒ¾
+	//ƒNƒ‰ƒXŠÖ”éŒ¾
 	Player	player;
 	Enemy	enemy[enemyNum];
 	Rule	rule;
@@ -153,22 +153,22 @@ int		WINAPI		myWinMain(HINSTANCE hInstance, HINSTANCE hPreInst, LPSTR     CmdLin
 		enemy[i].InitEnemy();
 	}
 	/////////////////////////////////////////////////////////
-	// ?Q?[?????[?v
+	// ƒQ[ƒ€ƒ‹[ƒv
 	/////////////////////////////////////////////////////////
 	
 	
 	while (1)
 	{
 		
-		ClearDrawScreen(); 					// ?è­ï¾Š?ï‰ŠåŒ€ï½»(?^?M??É‚??ãƒ»
+		ClearDrawScreen(); 					// ‰æ–Ê‚ğ‰Šú‰»(^‚Á•‚É‚·‚é)
 		if (!player.atkFlag)
 		{
-			INPUT_INSTANCE.update();			// ?ãƒ»ï¾?L?[???×‚Ä’??×‚ãƒ»
+			INPUT_INSTANCE.update();			// “ü—ÍƒL[‚·‚×‚Ä’²‚×‚é
 		}
 		
 		rule.frameCount++;
 		
-		//// ?e?A?b?v?f?[?g?Ö??î‹ï¾„?ï¾”.
+		//// ŠeƒAƒbƒvƒf[ƒgŠÖ”‚ğŒÄ‚Ô.
 		if(rule.frameCount == 10)
 		{
 			sound.TitleSound(&rule);
@@ -204,12 +204,12 @@ int		WINAPI		myWinMain(HINSTANCE hInstance, HINSTANCE hPreInst, LPSTR     CmdLin
 			{
 				enemy->damagecont++;
 			}
-			player.MovePlayer(&sound);				//?v???[???[?ÌˆÚ“?
+			player.MovePlayer(&sound);				//ƒvƒŒ[ƒ„[‚ÌˆÚ“®
 			
-			map.scroll(&player);							//?X?N???[??
+			map.scroll(&player);							//ƒXƒNƒ[ƒ‹
 			for (int i = 0; i < enemyNum; i++)
 			{
-				player.PlayerHitChec(&enemy[i], map, &sound);	//?v???[???[?Ì“????è”»?ãƒ»
+				player.PlayerHitChec(&enemy[i], map, &sound);	//ƒvƒŒ[ƒ„[‚Ì“–‚½‚è”»’è
 				enemy[i].BlocRectEnemy();
 			}
 			if (rule.frameCount % 100 == 0)
@@ -236,28 +236,28 @@ int		WINAPI		myWinMain(HINSTANCE hInstance, HINSTANCE hPreInst, LPSTR     CmdLin
 		if (rule.state == STATE_GAME)
 		{
 			DrawExtendGraph(0 - 1, 0, WINDOW_WIDTH - 1, WINDOW_HEIGHT, ui.sky, TRUE);
-			map.DrawMap(&rule);						//?}?b?v?`?ãƒ»
+			map.DrawMap(&rule);						//ƒ}ƒbƒv•`‰æ
 	
 			for (int i = 0; i < enemyNum; i++)
 			{
-				enemy[i].DrawEnemy(&player, &map, &rule,&text); //?G?l?~?[?Ì•\??
+				enemy[i].DrawEnemy(&player, &map, &rule,&text); //ƒGƒlƒ~[‚Ì•\¦
 			}
 		
 			
-			player.PlayerAnime(&map, &rule, text,&sound);	//?A?j???[?V????
+			player.PlayerAnime(&map, &rule, text,&sound);	//ƒAƒjƒ[ƒVƒ‡ƒ“
 		}
 		ui.DrawUI(&rule, &player,&map, text);
 		
-		// ???è­ï¾Š?Ì“ç‡‰e?î”\?è­ï¾Š?ÉƒR?s?[???é©•i?`?è¬”ï¾Œ?m?é–¨j.
+		// — ‰æ–Ê‚Ì“à—e‚ğ•\‰æ–Ê‚ÉƒRƒs[‚·‚éi•`‰æ‚ÌŠm’èj.
 		ScreenFlip();
 		
-		// Windows ?WL?Ì–Ê“|?È????îc?w???C?u?????É‚ç«„ãƒ»??ãƒ»
-		// ?}?C?i?X?Ì’l?i?G???[?l?j???Ô‚BÄ‚????çƒ‹?[?v?ğ”²‚??ãƒ»
+		// Windows “Á—L‚Ì–Ê“|‚Èˆ—‚ğ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚É‚â‚ç‚¹‚é
+		// ƒ}ƒCƒiƒX‚Ì’liƒGƒ‰[’lj‚ª•Ô‚Á‚Ä‚«‚½‚çƒ‹[ƒv‚ğ”²‚¯‚é
 		if (ProcessMessage() < 0)
 		{
 			break;
 		}
-		// ?Âµ?d?r?b?L?[???????é»·ï¾„?????çƒ‹?[?v???ç”²???ãƒ»
+		// ‚à‚µ‚d‚r‚bƒL[‚ª‰Ÿ‚³‚ê‚Ä‚¢‚½‚çƒ‹[ƒv‚©‚ç”²‚¯‚é
 		else if (CheckHitKey(KEY_INPUT_ESCAPE))
 		{
 			break;
@@ -273,7 +273,7 @@ int		WINAPI		myWinMain(HINSTANCE hInstance, HINSTANCE hPreInst, LPSTR     CmdLin
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////
-// ?R???\?[???è­ï¾Š???èº™indows?Ì‚??ãƒ»@?É”î†¹ï¾”???ß‚ÌƒR?[?h
+// ƒRƒ“ƒ\[ƒ‹‰æ–Ê‚©‚çWindows‚Ì‚¨ì–@‚É”ò‚Ô‚½‚ß‚ÌƒR[ƒh
 ////////////////////////////////////////////////////////////////////////////////////////
 void windowOpen(int screen_x, int screen_y, bool FullScreen)
 {
@@ -283,7 +283,7 @@ void windowOpen(int screen_x, int screen_y, bool FullScreen)
 	myWinMain( hInstance, NULL, NULL, iCmdShow, screen_x, screen_y, FullScreen);
 }
 
-// DOS?????ÌƒG???g???[?|?C???g
+// DOS‘‹‚ÌƒGƒ“ƒgƒŠ[ƒ|ƒCƒ“ƒg
 int main(void)
 {
 	windowOpen( 1440, 1200, false);
@@ -291,7 +291,7 @@ int main(void)
 	return 0;
 }
 
-// ?E?B???h?E?V?X?e???Ì??ÌƒG???g???[?|?C???g
+// ƒEƒBƒ“ƒhƒEƒVƒXƒeƒ€‚Ì‚ÌƒGƒ“ƒgƒŠ[ƒ|ƒCƒ“ƒg
 int WINAPI WinMain(HINSTANCE,HINSTANCE,LPSTR,int)
 {
 	main();

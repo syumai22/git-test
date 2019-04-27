@@ -22,7 +22,7 @@ BitmapText::BitmapText()
 
 BitmapText::~BitmapText()
 {
-	// ?t?H???g?C???[?W?Ì‰î”ãƒ»
+	// ƒtƒHƒ“ƒgƒCƒ[ƒW‚Ì‰ğ•ú
 	if (m_useflag)
 	{
 		for (int i = 0; i < maxImageNum; i++)
@@ -37,33 +37,33 @@ void BitmapText::setFontImage(int Xnum, int Ynum, char * fontImgfilename)
 {
 	int tmpImg, imgX, imgY;
 
-	// ?t?@?C?????Ç‚İ??ï¾
+	// ƒtƒ@ƒCƒ‹‰¼“Ç‚İ‚İ
 	tmpImg = LoadGraph(fontImgfilename);
 	if (tmpImg == -1)
 	{
 		printf("fontfile load failed:[%s]", fontImgfilename);
 		return;
 	}
-	//?@?æ‘œ?T?C?Y?c???æ“¾
+	//@‰æ‘œƒTƒCƒYc‰¡æ“¾
 	GetGraphSize(tmpImg, &imgX, &imgY);
 	DeleteGraph(tmpImg);
 
-	// ?t?H???g1?Â•??Ìc???T?C?Y?æ“¾
+	// ƒtƒHƒ“ƒg1ŒÂ•ª‚Ìc‰¡ƒTƒCƒYæ“¾
 	m_sizeX = imgX / Xnum;
 	m_sizeY = imgY / Ynum;
 
-	// ?æ‘œ?Ç‚İ??ï¾
+	// ‰æ‘œ“Ç‚İ‚İ
 	LoadDivGraph(fontImgfilename, Xnum*Ynum, Xnum, Ynum, m_sizeX, m_sizeY, m_fontImg);
 	m_useflag = true;
 }
 
 void BitmapText::textDraw(int x, int y, char * string)
 {
-	//?t?H???g?g?p?Â”\??
+	//ƒtƒHƒ“ƒgg—p‰Â”\‚©
 	if (!m_useflag)
 		return;
 
-	//?e?L?X?g?`?è¬šJ?n
+	//ƒeƒLƒXƒg•`‰æŠJn
 	int text_x, text_y, img;
 	text_x = x;
 	text_y = y;
@@ -71,7 +71,7 @@ void BitmapText::textDraw(int x, int y, char * string)
 	while (*string)
 	{
 
-		// ???????ãƒ»s?Ìê‡?Í‰ãƒ»s?{?ß‚?
+		// •¶š‚ª‰üs‚Ìê‡‚Í‰üs{–ß‚·
 		if (*string == '\n')
 		{
 			text_x = x;
@@ -80,14 +80,14 @@ void BitmapText::textDraw(int x, int y, char * string)
 			continue;
 		}
 
-		//?????`?ãƒ»
+		//•¶š•`‰æ
 		img = isString(*string);
 		if (img >= 0)
 		{
 			DrawGraph(text_x, text_y, m_fontImg[img], m_bgalpha);
 		}
 
-		// ?????`?è¬Œï¾Š?u?i?ß‚ãƒ»
+		// •¶š•`‰æˆÊ’ui‚ß‚é
 		text_x += m_sizeX;
 		string++;
 	}
@@ -97,11 +97,11 @@ void BitmapText::textDraw(int x, int y, char * string)
 
 void BitmapText::textDrawWithShadow(int x, int y, char * string)
 {
-	//?e?????`?ãƒ»
+	//‰e•¶š•`‰æ
 	SetDrawBright(m_shadow_R, m_shadow_G, m_shadow_B);
 	textDraw(x + m_shadowOffsetX, y + m_shadowOffsetY, string);
 
-	//?????`?ãƒ»
+	//•¶š•`‰æ
 	SetDrawBright(R, G, B);
 	textDraw(x, y, string);
 
@@ -118,7 +118,7 @@ void BitmapText::textDrawRandom(int x, int y, char* string, int maxRand, int cou
 
 	randString = new char[cnt + 1];
 
-	//???İ‚Ì•??????çƒ‰???_???????î„ˆãƒ»?
+	//Œ»İ‚Ì•¶š‚©‚çƒ‰ƒ“ƒ_ƒ€•¶š—ñì¬
 	cnt = 0;
 	char randCount;
 	while (*string)
@@ -137,7 +137,7 @@ void BitmapText::textDrawRandom(int x, int y, char* string, int maxRand, int cou
 
 void BitmapText::textDrawMessage(int x, int y, char * string, unsigned int display_lengh)
 {
-	// ???????î‚J?E???g???A?\???????????{???Ì•??????è¬”ãƒ»????é»·ï¾???Ì‚Ü‚Ü•\??
+	// •¶š”‚ğƒJƒEƒ“ƒg‚µA•\¦•¶š”‚ª–{—ˆ‚Ì•¶š”‚æ‚è‘½‚¯‚ê‚Î‚»‚Ì‚Ü‚Ü•\¦
 	size_t len = strlen(string);
 	if (len < display_lengh)
 	{
@@ -145,7 +145,7 @@ void BitmapText::textDrawMessage(int x, int y, char * string, unsigned int displ
 		return;
 	}
 
-	// ???????î€¤isplay_length?çƒ½ï¾…?\??
+	// •¶š”‚ğdisplay_length“à‚Å•\¦
 	char* tmpStr = new char[display_lengh + 1];
 	for (unsigned int i = 0; i < display_lengh; i++)
 	{
@@ -160,7 +160,7 @@ void BitmapText::textDrawMessage(int x, int y, char * string, unsigned int displ
 
 void BitmapText::textDrawMessageWithShadow(int x, int y, char * string, unsigned int display_lengh)
 {
-	// ???????î‚J?E???g???A?\???????????{???Ì•??????è¬”ãƒ»????é»·ï¾???Ì‚Ü‚Ü•\??
+	// •¶š”‚ğƒJƒEƒ“ƒg‚µA•\¦•¶š”‚ª–{—ˆ‚Ì•¶š”‚æ‚è‘½‚¯‚ê‚Î‚»‚Ì‚Ü‚Ü•\¦
 	size_t len = strlen(string);
 	if (len < display_lengh)
 	{
@@ -168,7 +168,7 @@ void BitmapText::textDrawMessageWithShadow(int x, int y, char * string, unsigned
 		return;
 	}
 
-	// ???????î€¤isplay_length?çƒ½ï¾…?\??
+	// •¶š”‚ğdisplay_length“à‚Å•\¦
 	char* tmpStr = new char[display_lengh + 1];
 	for (unsigned int i = 0; i < display_lengh; i++)
 	{
