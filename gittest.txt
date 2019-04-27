@@ -1,5 +1,2 @@
-<<<<<<< HEAD
+ HEAD
 hello git?
-=======
-hello git!!!
->>>>>>> brabchA
